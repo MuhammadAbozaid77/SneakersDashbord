@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CreateModal from './Modal/CreateModal';
-import JordanFolders from './Modal/JordanFolders';
 import { useEffect } from 'react';
-import { getJordan_Data, getJordan_Images, get_final_Jordan_Data } from './JordanRedux/JordanServices';
+import { meTailwindStyles } from '../../Assests/styleTailwind';
+import CreateModal from './Modal/CreateModal';
+import { getSneakers_Data, getSneakers_Images, get_final_Sneakers_Data } from './SneakersRedux/SneakersServices';
+import SneakersDataTable from './SneakersDataTable';
+import NoData from '../../Components/NoData';
+
 
 export default function Sneakers() {
   const dispatch = useDispatch();
   const [showCreateModal, setShowCreateModal] = useState(false);
 
-  const items = useSelector(state => state.Jordan_In_Redux);
+  const items = useSelector(state => state.Sneakers_In_Redux);
 
 useEffect(() => {
-    dispatch(getJordan_Data());
+    dispatch(getSneakers_Data());
 }, [dispatch]);
 
 useEffect(() => {
-    dispatch(getJordan_Images());
+    dispatch(getSneakers_Images());
 }, [dispatch]);
 
 useEffect(() => {
-    dispatch(get_final_Jordan_Data());
-}, [dispatch ,items.JordanData , items.JordanFolderImages]);
+    dispatch(get_final_Sneakers_Data());
+}, [dispatch ,items?.SneakersData , items?.SneakersFolderImages]);
 
  
   return <>
@@ -29,19 +32,21 @@ useEffect(() => {
     <div className="px-3 border-b flex justify-between items-center h-[80px] w-[100%]">
       
         <span className="md:text-[25px] text-[16px] text-slate-700 font-bold">
-            Jordan
+            Sneakers
         </span>
-
-        <button className="py-2 px-3 border rounded-md bg-slate-900 hover:bg-slate-700 duration-300 text-white
-                           lg:text-[20px] sm:text-[16px] text-[12px]"
-            onClick={()=>setShowCreateModal(true)}
-        >
+        
+        <button className={`${meTailwindStyles.createModalButton}`}   onClick={()=>setShowCreateModal(true)}  >
             Add New Group
         </button>
     </div>
 
     <div className="p-2">
-        <JordanFolders  data={items.FinalJordanData} />
+        {
+            items?.FinalSneakersData?.length > 0 ? 
+                <SneakersDataTable  data={items?.FinalSneakersData} />
+            : 
+            <NoData />
+        }
     </div>
     
 
@@ -54,3 +59,4 @@ useEffect(() => {
   
   </>
 };
+

@@ -3,6 +3,7 @@ import logo from './../../../Assests/logo.jpg';
 import { Link , useNavigate} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { Send_Loggin_Data } from '../AuthRedux/AuthReduxServices';
+import { meTailwindStyles } from '../../../Assests/styleTailwind';
 
 export default function Login () {
     const navigate = useNavigate();
@@ -32,34 +33,20 @@ export default function Login () {
                 <img className="w-[150px]" src={logo} alt="logo"/> 
             </div>
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 
-                                md:text-2xl dark:text-white">
-                    Sign in to your account
-                </h1>
+                <h1 className={`${meTailwindStyles.loginHeader}`} >  Sign in to your account  </h1>
                 <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                     <div>
-                        <label for="email" className="block text-md text-gray-900 dark:text-white">
-                        Your email
-                        </label>
+                        <label for="email" className={`${meTailwindStyles.loginLabel}`}> Your email </label>
                         <input type="email" name="email" id="email" 
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-[16px]
-                                rounded-lg focus:ring-primary-600 focus:border-primary-600 block
-                                w-full p-3 dark:bg-gray-700 dark:border-gray-600
-                                dark:placeholder-gray-400 dark:text-white
-                                dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                            className={`${meTailwindStyles.loginInput}`}
                             placeholder="name@company.com" required=""
                             onChange={(e)=>setUserEmail(e.target.value)}
                         />
                     </div>
                     <div>
-                        <label for="password" className="block text-md text-gray-900 dark:text-white">
-                        Password
-                        </label>
+                        <label for="password" className={`${meTailwindStyles.loginLabel}`}>  Password  </label>
                         <input type="password" name="password" id="password" placeholder="••••••••" 
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-[16px] rounded-lg 
-                                focus:ring-primary-600 focus:border-primary-600 block w-full p-3
-                                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                                dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                            className={`${meTailwindStyles.loginInput}`}
                             required="" 
                             onChange={(e)=>setUserPassword(e.target.value)}
                         />
@@ -77,11 +64,9 @@ export default function Login () {
                             Forgot password?
                         </Link>
                     </div>
-                    <button type="submit" className="w-full text-white bg-black hover:bg-blue-700 duration-300 
-                                            focus:ring-4 focus:outline-none 
-                                            focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
-                                            dark:bg-primary-600 
-                                            dark:hover:bg-primary-700 dark:focus:ring-primary-800 border"> 
+                    <button type="submit" 
+                            className={`${meTailwindStyles.loginButtonSubmit}`}
+                    > 
                         Sign in 
                     </button>
                 </form>
