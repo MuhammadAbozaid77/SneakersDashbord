@@ -1,27 +1,27 @@
 import React, {useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {create_Jordan_Data , create_Jordan_Images_folder, getJordan_Data, getJordan_Images} from "./../JordanRedux/JordanServices";
 import { meTailwindStyles } from '../../../Assests/styleTailwind';
+import { getSneakers_Images  , getSneakers_Data , create_Sneakers_Images_folder ,  create_Sneakers_Data} from '../SneakersRedux/SneakersServices';
+import {toast } from 'react-toastify';
 import { successTostify } from '../../../Assests/tostifyOptions';
+
 
 export default function CreateModal({onClose}) {
     const dispatch = useDispatch();
-
     const [productName, setProductName] = useState("");
     const [productprice, setProductprice] = useState(0);
     const [productImages, setProductImages] = useState([]);
 
 // add data and Images to Firebase
     const sendDataToFirebase = ()=>{
-        dispatch(create_Jordan_Data({productName ,productprice}));
-        dispatch(create_Jordan_Images_folder({productImages,productName}))
+        dispatch(create_Sneakers_Data({productName ,productprice}));
+        dispatch(create_Sneakers_Images_folder({productImages,productName}))
         .then(()=>onClose())
         .then(()=>successTostify())
-        // 2000 milliseconds = 2 seconds
         setTimeout(() => {
-            dispatch(getJordan_Data());
-            dispatch(getJordan_Images());
-        }, 2000); 
+            dispatch(getSneakers_Data());
+            dispatch(getSneakers_Images());
+        }, 3000); 
     }
 
   return <>

@@ -6,9 +6,10 @@ import Jordan from './Pages/Jordan/Jordan';
 import Sneakers from './Pages/Sneakers/Sneakers';
 import RunningShoes from './Pages/RunningShoes/RunningShoes';
 import FootballShoes from './Pages/FootballShoes/FootballShoes';
-import JordanDetails from './Pages/Jordan/Modal/JordanDetails';
 import Login from './Pages/AuthGroup/Login/Login';
 import Registiration from './Pages/AuthGroup/Registiration/Registiration';
+import SneakersDetails from './Pages/Sneakers/SneakersDetails';
+import JordanDetails from './Pages/Jordan/JordanDetails';
 
 export default function App({children}) {
 
@@ -18,7 +19,8 @@ export default function App({children}) {
     {path : "/" , element : <Layout /> ,  children : [
       { path : "/home" , element : <Home/> },
       { path : "jordan" , element : <Jordan /> },
-      { path : "jordan-details/:jordan_id" , element : <JordanDetails /> },
+      { path : "jordan-details/:productId" , element : <JordanDetails /> },
+      { path : "sneakers-details/:productId" , element : <SneakersDetails /> },
       { path : "sneakers" , element : <Sneakers /> },
       { path : "running-shoes" , element : <RunningShoes/> },
       { path : "football-shoes" , element : <FootballShoes/> },
